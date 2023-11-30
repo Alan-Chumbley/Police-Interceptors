@@ -1,5 +1,36 @@
 body {
     /* Template to check linked correctly */
+
+    background-color: black;
+    text-align: center;
+    padding: 0px;
+}
+
+.flex-container {
+display: flex;
+}
+
+.navbar-brand { 
+    colour: black;
+    margin-left: 16px;
+}
+
+
+.fa-handcuffs {
+    margin-right: 490px;
+    margin-top: 14px;
+    font-size: 24px;
+
+}
+
+
+.navbar-brand {
+    font-weight: 500;
+    font-family: sans-serif;
+    font-size: 28px;
+}
+
+
     
   margin: 0;
 }
@@ -39,5 +70,4 @@ body {
 #map{
     height: 100%vh;
     width:100%vw;
-   
 }
