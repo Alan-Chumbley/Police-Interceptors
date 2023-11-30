@@ -1,5 +1,6 @@
 body {
     /* Template to check linked correctly */
+
     background-color: black;
     text-align: center;
     padding: 0px;
@@ -28,12 +29,6 @@ display: flex;
     font-family: sans-serif;
     font-size: 28px;
 }
-
-
-
-
-
-
 
 
     
@@ -75,5 +70,4 @@ display: flex;
 #map{
     height: 100%vh;
     width:100%vw;
-   
 }
