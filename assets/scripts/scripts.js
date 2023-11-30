@@ -2,34 +2,57 @@
 
 // API KEY VARIABLES
 const GEO_KEY = "8e65421b6e97a45d703a871ea4e78c3a";
-const GOOGLE_KEY = "";
-const POLICE_KEY = "";
-
 // Search bar location - set to london to start, docs state we can also use post codes in the search
 let city = "nn1";
 let latLon;
+
+// Blocker: -- API call cost etc, do we want to use the api or use the iframe:
+/**
+<iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+    &q=Space+Needle,Seattle+WA">
+</iframe>
+ */
+const GOOGLE_KEY = "";
+
+// Police API no longer needs key
+const POLICE_KEY = "";
+// IMPORTANT TO NOTE: when searching 1992 I came up with 0 results, api logged 501 and 501, the data
+// doesnt exist, so we will need to find out specifically how far back we can go to prevent errors
+// by user trying to search D.O.B data, because apparently I am now too old to see crime where I was 
+// born :'( 
+let monthSearched = "2021-01";
+let crimeData;
 
 // API CALLS AND DATA HANDLING
 
 // handle returned data from calls
 function handleData(data, apiName) {
-    // declare storage temp variable
-    // let storage;
-    console.log("handle data lat: ", data.lat);
+    // console.log("handle data lat: ", data.lat, data.lon);
 
     // switch data structure depending on api call
     switch(apiName) {
+        // geocoder call
         case "geoCode":
-            // assign storage as object
-            storage = {latitude: data.lat, longitude: data.lon};
             // assign global variable
-            latLon = storage;
+            latLon = {latitude: data.lat, longitude: data.lon};
             // console.log("latLon = " + latLon.longitude + " " + latLon.longitude);
             return;
+        // google maps handling - current blocker
         case "googleMap":
             return "google data";
+        // police data handling
         case "policeApi":
-            return "police data";
+            // update global with data as current returned array
+            crimeData = data;
+            // console.log("Police data: ", crimeData);
+            return;
         default:
             return "error in handling of data";
     }
@@ -43,21 +66,25 @@ async function callAPI(apiName, apiKey) {
 
     // change api path dependent on api name
     switch(apiName) {
+        // Geocoder pathing
         case "geoCode":
-            // check if location is postcode input
-            if (city.length === 3) {
+            // check if location is postcode input (check for numbers)
+            if (/\d/.test(city)) {
                 // search postcode
                 path = "http://api.openweathermap.org/geo/1.0/zip?zip=" + city + ",GB&appid=" + apiKey;   
             } else {
-                // search city name
+                // search city name -- BUG FOUND -- LOCATION ON POST CODE SEARCHED BUT NOT WITH CITY NAMES!! -- unsure why but will work on a fix
                 path = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + ",GB&appid=" + apiKey;   
             }
                 break;
+        // Google map pathing
         case "googleMap":
-            path = "googleMap api link";
+            path = "";
+            console.log(path);
             break;
         case "policeApi":
-            path = "police api link";
+            // This link functions correctly and we have the data as a huge (835 total for just NN1) array of objects, need to figure out how to filter through it all
+            path = "https://data.police.uk/api/crimes-street/all-crime?lat=" + latLon.latitude + "&lng=" + latLon.longitude + "&date=" + monthSearched;
             break;
         default:
             path = "";
@@ -91,4 +118,11 @@ async function callAPI(apiName, apiKey) {
 
 // call api for geocoded location, assign lat / lon object on return value
 callAPI("geoCode", GEO_KEY);
-// let policeData = callAPI("policeApi", POLICE_KEY)
+
+function apiDelayedCall() {
+    setTimeout(() => {
+        callAPI("policeApi", POLICE_KEY);
+    }, 3000);
+}
+
+apiDelayedCall();
