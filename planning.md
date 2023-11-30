@@ -58,3 +58,9 @@ Ian - Planning , or lack thereof
     - Crime rates, how to display trends
         - color coded, simple red/green increase
         - or graph for trends
+
+- Next steps: Bootstrap docs, new image for hero, work on template for  modals in data search results,
+alan -display map structure & handle that data
+ian - api restructure
+rachael - visit bootstrap docs, handle hero banner, css to fix positions
+gareth - look through and at how to display police data

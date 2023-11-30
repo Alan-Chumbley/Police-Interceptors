@@ -6,21 +6,9 @@ const GEO_KEY = "8e65421b6e97a45d703a871ea4e78c3a";
 let city = "nn1";
 let latLon;
 
-  
-// Blocker: -- API call cost etc, do we want to use the api or use the iframe:
-/**
-<iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-    &q=Space+Needle,Seattle+WA">
-</iframe>
- */
-const GOOGLE_KEY = "";
+
+// NO LONGER GOOGLE, USING MAPBOX - Alans key, be careful
+const MAPBOX_KEY = "pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw";
 
 // Police API no longer needs key
 const POLICE_KEY = "";
@@ -43,7 +31,7 @@ function handleData(data, apiName) {
         case "geoCode":
             // assign global variable
             latLon = {latitude: data.lat, longitude: data.lon};
-            // console.log("latLon = " + latLon.longitude + " " + latLon.longitude);
+            console.log("latLon = " + latLon.longitude + " " + latLon.longitude);
             return;
         // google maps handling - current blocker
         case "googleMap":
@@ -52,7 +40,7 @@ function handleData(data, apiName) {
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            // console.log("Police data: ", crimeData);
+            console.log("Police data: ", crimeData);
             return;
         default:
             return "error in handling of data";
@@ -77,7 +65,7 @@ async function callAPI(apiName, apiKey) {
                 // search city name -- BUG FOUND -- LOCATION ON POST CODE SEARCHED BUT NOT WITH CITY NAMES!! -- unsure why but will work on a fix
                 path = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + ",GB&appid=" + apiKey;   
             }
-                break;
+            break;
         // Google map pathing
         case "googleMap":
             path = "";
@@ -118,7 +106,7 @@ async function callAPI(apiName, apiKey) {
 }
 
 // call api for geocoded location, assign lat / lon object on return value
-callAPI("geoCode", GEO_KEY);
+// callAPI("geoCode", GEO_KEY);
 
 function apiDelayedCall() {
     setTimeout(() => {
@@ -126,21 +114,29 @@ function apiDelayedCall() {
     }, 3000);
 }
 
-apiDelayedCall();
 
 //serach button ======
 $("#search-button").on("click", function(event){
-    event.preventDefault();
+    // event.preventDefault();
     console.log("Button Clicked!");
-var location = $('#search-input').val();
-console.log("USER INPUT Location: " + location);
+    city = $('#search-input').val();
+    callAPI("geoCode", GEO_KEY);
+    apiDelayedCall();
+});
 
+$("#search-input").on('keypress', function(event) {
+    if (event.key == 'Enter') {
+        event.preventDefault();
+        city = event.target.value;
+        callAPI("geoCode", GEO_KEY);
+        apiDelayedCall();
+    }
+    
 });
 
 
-
-//   map key - ALANS API- please don't run an infinite loop $$$
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
+//   map key - ALANS API- please don't run an infinite loop $$$ - no worries wont do that :P 
+mapboxgl.accessToken = MAPBOX_KEY;
   
 
    //current location
@@ -150,12 +146,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0Z
   
   function success(position) {
     console.log("Current Location: " && position); //resurns users location
-    setupMap([position.coords.longitude, position.coords.latitude])
+    setupMap([position.coords.longitude, position.coords.latitude])//
     
-    var autoUserLocation = position;
-    localStorage.setItem("autoLocation", JSON.stringify(autoUserLocation));
-    var autoUserLocationData = JSON.parse(localStorage.getItem('autoLocation'));
-    console.log("Local Storage Location: "&& autoUserLocationData);
+
   }
   //if user disables access to location, provide a default
   function error() {
@@ -173,5 +166,5 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0Z
     })
    
   }
-  localStorage.setItem
+//   localStorage.setItem
 
