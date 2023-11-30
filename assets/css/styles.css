@@ -1,6 +1,43 @@
 body {
     /* Template to check linked correctly */
-    background-color: black;
-    text-align: center;
-    padding: 40px;
+    
+  margin: 0;
+}
+#search-button{
+    height: 40px;
+    width: 55px;
+    margin-left:10px;
+    display:inline-block;
+    align-items: flex-end;
+    margin:15px;
+     margin-left: -5px;
+     background-color: ;
+}
+
+#search-input{
+    border-radius: 15px;
+    top:50%;
+    margin:15px;
+}
+.input-group{
+    
+    align-items: center;
+    z-index: 1; /* set higher z-index value */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+    width: 40%;
+
+
+}
+#searchSVG {
+    margin:5px;
+}
+
+#map{
+    height: 100%vh;
+    width:100%vw;
+   
 }
