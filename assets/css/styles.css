@@ -1,6 +1,10 @@
-body {
-    /* Template to check linked correctly */
-    background-color: black;
-    text-align: center;
+#hero-img {
     padding: 40px;
+    background-size: 600px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#info-nav {
+    padding-top: 20px;
 }
