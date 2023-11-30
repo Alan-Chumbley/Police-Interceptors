@@ -27,8 +27,30 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/77379d9051.js" crossorigin="anonymous"></script>
+
+         <!-- Mapbox CDN -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+
 </head>
 <body>
+    <!-- user search bar & button-->
+    <div class="input-group">
+    <!--user search bar-->
+        <input id="search-input" type="search" id="form1" class="form-control" placeholder="Enter a City, Street Name or Postcode... SW19" data-search-location=" "></input>
+    <!--user search button-->
+            <button id="search-button" type="button" class="btn btn-primary">
+                <!-- icon-->
+                <svg id ="searchSVG" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </label>
+    </div>
+      
+        
+        
+     
 
 
   <nav class="navbar bg-light navbar-light">
@@ -52,9 +74,17 @@
 
 
 
+    
     <div id="root"></div>
+<!-- map-->
+    <div id='map' style='width: 100vw; height: 100vh;'></div>
+<script>
+  
+</script>
+
     
     <!-- Custom Scripts -->
     <script src="assets/scripts/scripts.js"></script>
 </body>
+
 </html>
