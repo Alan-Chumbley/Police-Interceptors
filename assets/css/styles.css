@@ -47,7 +47,6 @@ display: flex;
 }
 
 .areaInfo {
-
     border: 3px solid black;
     padding: 32px;
     width: 500px;
@@ -70,43 +69,40 @@ th, td {
 }
 
 
-
-
-
 #search-button{
     height: 40px;
     width: 55px;
     margin-left:10px;
-    display:inline-block;
+    display:block;
     align-items: flex-end;
     margin:15px;
-     margin-left: -5px;
-     background-color: ;
+    margin-left: -5px;
+    background-color: ;
 }
 
 #search-input{
+    display:block;
     border-radius: 15px;
     top:50%;
     margin:15px;
+
 }
 .input-group{
-    
+    display: ;
     align-items: center;
     z-index: 1; /* set higher z-index value */
     position: absolute;
     top: 50%;
     left: 50%;
-    
     transform: translate(-50%, -50%);
     width: 40%;
 
 
 }
-#searchSVG {
-    margin:5px;
-}
+
 
 #map{
     height: 100%vh;
     width:100%vw;
+    display: block;
 }
