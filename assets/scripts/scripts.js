@@ -52,7 +52,7 @@ function handleData(data, apiName) {
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            // console.log("Police data: ", crimeData);
+            console.log("Police data: ", crimeData);
             return;
         default:
             return "error in handling of data";
