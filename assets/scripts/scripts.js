@@ -6,53 +6,6 @@ const GEO_KEY = "8e65421b6e97a45d703a871ea4e78c3a";
 let city = "nn1";
 let latLon;
 
-//serach button ======
-$("#search-button").on("click", function(event){
-    event.preventDefault();
-    console.log("Button Clicked!");
-var location = $('#search-input').val();
-console.log("USER INPUT Location: " + location);
-
-});
-
-
-
-//   map key - ALANS API- please don't run an infinite loop $$$
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
-  
-
-   //current location
-   navigator.geolocation.getCurrentPosition(success, error, {
-    enableHighAccuracy: true
-  })
-  
-  function success(position) {
-    console.log("Current Location: " && position); //resurns users location
-    setupMap([position.coords.longitude, position.coords.latitude])
-    
-    var autoUserLocation = position;
-    localStorage.setItem("autoLocation", JSON.stringify(autoUserLocation));
-    var autoUserLocationData = JSON.parse(localStorage.getItem('autoLocation'));
-    console.log("Local Storage Location: "&& autoUserLocationData);
-  }
-  //if user disables access to location, provide a default
-  function error() {
-    setupMap([-0.083094, 51.511177])
-  }
-
-  //map settings centered to be more intuitive
-  function setupMap(center) {
-    var map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: center, //centre location on page
-      zoom: 14 
-      
-    })
-   
-  }
-  
-
   
 // Blocker: -- API call cost etc, do we want to use the api or use the iframe:
 /**
@@ -174,3 +127,125 @@ function apiDelayedCall() {
 }
 
 apiDelayedCall();
+
+//serach button ======
+$("#search-button").on("click", function(event) { //click event listener to the search button
+    event.preventDefault();
+    console.log("Button Clicked!");
+    var location = $('#search-input').val();
+    console.log("USER INPUT Location: " + location);
+
+    //checks to see if #searc- button element clicked and says sets it to true
+    $(this).data('clicked', true); 
+});
+
+
+var input = document.getElementById("search-input");
+input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+    event.preventDefault();
+    console.log("Location by Enter: " + input.value);
+
+      // Check if the button was clicked before Enter was pressed- could be used for mobile 
+    var buttonClicked = $("#search-button").data('clicked');
+    if (!buttonClicked) {
+        console.log("Enter key pressed without button click");
+        //if button is not clicked then let the console know 
+    }
+    }
+});
+
+
+
+
+//   map key - ALANS API- please don't run an infinite loop $$$
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
+
+
+   //current location
+navigator.geolocation.getCurrentPosition(success, error, {
+    enableHighAccuracy: true
+})
+
+function success(position) {
+    console.log("Current Location: " && position); //resurns users location
+    setupMap([position.coords.longitude, position.coords.latitude])
+    
+    var autoUserLocation = position;
+    localStorage.setItem("autoLocation", JSON.stringify(autoUserLocation));
+    var autoUserLocationData = JSON.parse(localStorage.getItem('autoLocation'));
+    console.log("Local Storage Location: "&& autoUserLocationData);
+}
+  //if user disables access to location, provide a default
+function error() {
+    setupMap([-0.083094, 51.511177])
+}
+
+  //map settings centered to be more intuitive
+function setupMap(center) {
+    var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-monochrome-v11",
+     center: center, //centre location on page
+    zoom: 14
+
+    })
+}
+//hide elements after click
+
+//gets rid of search button
+var onSearch = document.querySelector('.input-group');
+onSearch.addEventListener("oninput", () =>{
+if (onSearch.style.display === 'block' && onSearch.style.display === ''){
+    onSearch.style.display ='none';
+    
+}else { onSearch.style.display = 'none';
+
+  }
+})
+
+
+
+// on search map change 
+// var onSearchMap = document.querySelector('map');
+// onSearch.addEventListener("oninput", () =>{
+// if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
+//     onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
+    
+// }else { onSearch.style.display = 'none';
+
+//   }
+// })
+
+
+
+
+//make map dark mode
+function darkMode(center) {
+    var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
+     center: center, //centre location on page
+    zoom: 14
+
+    })
+}
+
+var themeswitcher =
+themeswitcher.addEventListener("click", function() {
+    if (mapMode === "light") {
+        // Switch to dark mode (show iframe)
+        mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
+        darkMap.style.display = 'block';
+
+        mode = "light";
+
+    } else {
+        // Switch to light mode (hide iframe)
+        darkMap.style.display = 'none';
+        mapMode.style.display ='block' ;
+        mode = "dark";
+    }
+});
+
+
