@@ -52,7 +52,8 @@ function handleData(data, apiName) {
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            // console.log("Police data: ", crimeData);
+            console.log("Police data: ", crimeData); 
+            tally(crimeData);
             return;
         default:
             return "error in handling of data";
@@ -249,3 +250,44 @@ themeswitcher.addEventListener("click", function() {
 });
 
 
+
+  //Tally up number of crimes by creating variable for each
+  //For loop to tally up total adding one each other
+  //if/else statement to work out if the data matches the data presented in the table
+  //access text of number of crimes - get element by ID = type of crime variable
+
+
+  function tally(data) {
+
+  var antiSocialBehaviour = 0;
+  var burglary = 0;
+  var drugs = 0;
+  var vehicleCrime = 0;
+  var violentCrime = 0;
+
+  for (let index = 0; index < data.length; index++) {
+    const category = data[index].category;
+  if (category === "anti-social-behaviour") {
+    antiSocialBehaviour += 1;
+  }  
+  else if (category === "burglary") {
+    burglary += 1;
+  }
+  else if (category === "drugs") {
+    drugs += 1; 
+  }
+  else if (category === "vehicle-crime") {
+    vehicleCrime += 1;
+  }
+  else if (category === "violent-crime") {
+   violentCrime += 1;
+  }
+  }
+  document.getElementById("crime1").innerText = antiSocialBehaviour;
+  document.getElementById("crime2").innerText = burglary;
+  document.getElementById("crime3").innerText = drugs;
+  document.getElementById("crime4").innerText = vehicleCrime;
+  document.getElementById("crime5").innerText = violentCrime;
+
+  
+}
