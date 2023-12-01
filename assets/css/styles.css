@@ -37,17 +37,27 @@ display: flex;
 .areaInfo {
 
     border: 3px solid black;
-    padding: 24px;
-    width: 350px;
+    padding: 32px;
+    width: 500px;
     margin-top: 400px;
-    margin-left: 24px;  
-    border-radius: 6px;
+    margin-left: 32px;  
+    border-radius: 4px;
 }
 
 .areaOverview {
     float: left;
  margin-bottom: 16px;
 }
+
+table {
+    width: 400px;
+}
+
+th, td {
+    padding: 8px;
+}
+
+
 
 
 
