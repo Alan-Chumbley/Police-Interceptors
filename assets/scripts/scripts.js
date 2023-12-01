@@ -38,7 +38,8 @@ function handleData(data, apiName) {
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            console.log("Police data: ", crimeData);
+            console.log("Police data: ", crimeData); 
+            tally(crimeData);
             return;
         default:
             return "error in handling of data";
@@ -106,13 +107,43 @@ function apiDelayedCall() {
     }, 3000);
 }
 
-// MAPBOX CALLS AND DATA HANDLING ---------------------------------------------------------------------------
+apiDelayedCall();
 
-// map key - ALANS API- please don't run an infinite loop $$$ - no worries wont do that, Ian :P 
-// AccessToken syntax for API key within MapBox
-mapboxgl.accessToken = MAPBOX_KEY;
+//serach button ======
+$("#search-button").on("click", function(event) { //click event listener to the search button
+    event.preventDefault();
+    console.log("Button Clicked!");
+    var location = $('#search-input').val();
+    console.log("USER INPUT Location: " + location);
 
-// fetch users current location
+    //checks to see if #searc- button element clicked and says sets it to true
+    $(this).data('clicked', true); 
+});
+
+
+var input = document.getElementById("search-input");
+input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+    event.preventDefault();
+    console.log("Location by Enter: " + input.value);
+
+      // Check if the button was clicked before Enter was pressed- could be used for mobile 
+    var buttonClicked = $("#search-button").data('clicked');
+    if (!buttonClicked) {
+        console.log("Enter key pressed without button click");
+        //if button is not clicked then let the console know 
+    }
+    }
+});
+
+
+
+
+//   map key - ALANS API- please don't run an infinite loop $$$
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
+
+
+   //current location
 navigator.geolocation.getCurrentPosition(success, error, {
     enableHighAccuracy: true
 });
@@ -167,3 +198,113 @@ $("#search-input").on('keypress', function(event) {
     }
     
 });
+
+  //map settings centered to be more intuitive
+function setupMap(center) {
+    var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-monochrome-v11",
+     center: center, //centre location on page
+    zoom: 14
+
+    })
+}
+//hide elements after click
+
+//gets rid of search button
+var onSearch = document.querySelector('.input-group');
+onSearch.addEventListener("oninput", () =>{
+if (onSearch.style.display === 'block' && onSearch.style.display === ''){
+    onSearch.style.display ='none';
+    
+}else { onSearch.style.display = 'none';
+
+  }
+})
+
+
+
+// on search map change 
+// var onSearchMap = document.querySelector('map');
+// onSearch.addEventListener("oninput", () =>{
+// if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
+//     onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
+    
+// }else { onSearch.style.display = 'none';
+
+//   }
+// })
+
+
+
+
+//make map dark mode
+function darkMode(center) {
+    var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
+     center: center, //centre location on page
+    zoom: 14
+
+    })
+}
+
+var themeswitcher =
+themeswitcher.addEventListener("click", function() {
+    if (mapMode === "light") {
+        // Switch to dark mode (show iframe)
+        mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
+        darkMap.style.display = 'block';
+
+        mode = "light";
+
+    } else {
+        // Switch to light mode (hide iframe)
+        darkMap.style.display = 'none';
+        mapMode.style.display ='block' ;
+        mode = "dark";
+    }
+});
+
+
+
+  //Tally up number of crimes by creating variable for each
+  //For loop to tally up total adding one each other
+  //if/else statement to work out if the data matches the data presented in the table
+  //access text of number of crimes - get element by ID = type of crime variable
+
+
+  function tally(data) {
+
+  var antiSocialBehaviour = 0;
+  var burglary = 0;
+  var drugs = 0;
+  var vehicleCrime = 0;
+  var violentCrime = 0;
+
+  for (let index = 0; index < data.length; index++) {
+    const category = data[index].category;
+  if (category === "anti-social-behaviour") {
+    antiSocialBehaviour += 1;
+  }  
+  else if (category === "burglary") {
+    burglary += 1;
+  }
+  else if (category === "drugs") {
+    drugs += 1; 
+  }
+  else if (category === "vehicle-crime") {
+    vehicleCrime += 1;
+  }
+  else if (category === "violent-crime") {
+   violentCrime += 1;
+  }
+  }
+  document.getElementById("crime1").innerText = antiSocialBehaviour;
+  document.getElementById("crime2").innerText = burglary;
+  document.getElementById("crime3").innerText = drugs;
+  document.getElementById("crime4").innerText = vehicleCrime;
+  document.getElementById("crime5").innerText = violentCrime;
+
+  
+}

@@ -34,9 +34,10 @@
 
 
 </head>
+<body >
 <body>
     <div id="root"></div>
- <!-- Hero Section  -->
+<!-- Hero Section  -->
     <div class="p-5 text-center bg-image rounded-3" id="hero-img" style=" background-image: url('/Police-Interceptors/assets/images/IMG_6260.jpg');">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="d-flex justify-content-center align-items-center h-100">
@@ -56,44 +57,73 @@
         <input id="search-input" type="search" id="form1" class="form-control" placeholder="Enter a City, Street Name or Postcode... SW19" data-search-location=" "></input>
     <!--user search button-->
             <button id="search-button" type="button" class="btn btn-primary">
-                <!-- icon (Ian here, we have a dupe on the icon, can remove svg to fix but unsure if this has been resolved) -->
-                <svg id ="searchSVG" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    height="16" 
-                    width="16" 
-                    viewBox="0 0 512 512">
-                    <!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-                </svg>
+                <!-- icon-->
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </label>
     </div>
-
-
-    <nav class="navbar bg-light navbar-light">
-        <div class="flex-container">
-        <a class="navbar-brand" href="#"> Police Interceptors</a>
-        <i class="fa-solid fa-handcuffs"></i>
-        </div>
-    </nav>
-
-    <div>
-        <div>
-            <h3>Top reported crimes in East Putney</h3>
-            <p>Crime reported during the previous Month October 2023</p>
-            <ul>
-                <li> Anti-Social Behaviour</li>
-                <li> </li>
-            </ul>
-        </div>
+      
+        
+        
+     
+<!--Create Navbar for icon and header-->
+  <nav class="navbar bg-light navbar-light">
+    <div class="flex-container">
+    <a class="navbar-brand" href="#"> Police Interceptors</a>
+    <i class="fa-solid fa-handcuffs"></i>
     </div>
+</nav>
+
+
+  <!--Create div to hold area name and crime information-->
+  <div class="areaInfo">
+    <div class="areaOverview">
+        <h3>Top reported crimes in East Putney</h3>
+        <p>Crime reported during the previous Month October 2023</p>
+    </div>
+  <table>
+    <tr>
+      <th>Crime</th>
+      <th>Number of Incidents</th>
+    </tr>
+    <tr>
+      <td>Anti-Social Behaviour</td>
+      <td id="crime1">13</td>
+    </tr>
+    <tr>
+      <td>Burglary</td>
+      <td id="crime2">25</td>
+    </tr>
+    <tr>
+    <td>Drugs</td>
+    <td id="crime3">5</td>
+    </tr>
+    <tr>
+    <td>Vehicle crime</td>
+    <td id="crime4">10</td>
+    </tr>
+    <tr>
+      <td>Violent-crime</td>
+      <td id="crime5">20</td>
+    </tr>
+  </table>
+</div>
 
 
     
     <div id="root"></div>
-    <!-- map-->
-    <div id='map' style='width: 100vw; height: 100vh;'></div>
+<!--dark-->
+    <!-- Include your dark mode HTML elements here -->
+<button id="themeSwitcherbtn"><i class="fa-solid fa-circle-half-stroke"></i></button>
+
+    <div id='map' style='width: 100vw; height: 100vh;'>
+        <iframe id="darkMap" width='100%vw' height='100%vh' src="https://api.mapbox.com/styles/v1/chumba/clplcytui00w201po42tje31h.html?title=false&access_token=pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw&zoomwheel=false#14.05/51.49213/-0.15409" title="Untitled" style="border:none; display: none;"></iframe>
+
+    </div>
+
+<script>
+  
+</script>
 
 
     
