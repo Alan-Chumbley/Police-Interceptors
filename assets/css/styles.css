@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     /* Template to check linked correctly */
     
@@ -20,6 +21,56 @@ body {
     font-size: 26px;
  }
 
+=======
+
+#hero-img {
+    padding: 40px;
+    background-size: 600px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#info-nav {
+    padding-top: 20px;
+}
+
+body {
+    /* Template to check linked correctly */
+
+    background-color: black;
+    text-align: center;
+    padding: 0px;
+}
+
+.flex-container {
+display: flex;
+}
+
+.navbar-brand { 
+    colour: black;
+    margin-left: 16px;
+}
+
+
+.fa-handcuffs {
+    margin-right: 490px;
+    margin-top: 14px;
+    font-size: 24px;
+
+}
+
+
+.navbar-brand {
+    font-weight: 500;
+    font-family: sans-serif;
+    font-size: 28px;
+}
+
+
+    
+  margin: 0;
+}
+>>>>>>> 2731098d66fe07f6ff1d82d505f42af880f9b86a
 #search-button{
     height: 40px;
     width: 55px;
@@ -56,5 +107,9 @@ body {
 #map{
     height: 100%vh;
     width:100%vw;
+<<<<<<< HEAD
    
 }
+=======
+}
+>>>>>>> 2731098d66fe07f6ff1d82d505f42af880f9b86a
