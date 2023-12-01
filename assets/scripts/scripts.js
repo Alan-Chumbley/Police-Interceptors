@@ -5,7 +5,6 @@ const GEO_KEY = "8e65421b6e97a45d703a871ea4e78c3a";
 // Search bar location - set to london to start, docs state we can also use post codes in the search
 let city = "nn1";
 let latLon;
-
   
 // Blocker: -- API call cost etc, do we want to use the api or use the iframe:
 /**
