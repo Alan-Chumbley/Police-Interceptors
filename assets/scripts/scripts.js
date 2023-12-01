@@ -221,32 +221,32 @@ if (onSearch.style.display === 'block' && onSearch.style.display === ''){
 
 
 //make map dark mode
-function darkMode(center) {
-    var map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
-     center: center, //centre location on page
-    zoom: 14
+// function darkMode(center) {
+//     var darkMap = new mapboxgl.Map({
+//     container: "map",
+//     style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
+//      center: center, //centre location on page
+//     zoom: 14
 
-    })
-}
+//     })
+// }
 
-var themeswitcher =
-themeswitcher.addEventListener("click", function() {
-    if (mapMode === "light") {
-        // Switch to dark mode (show iframe)
-        mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
-        darkMap.style.display = 'block';
+// var themeswitcher =
+// themeswitcher.addEventListener("click", function() {
+//     if (mapMode === "light") {
+//         // Switch to dark mode (show iframe)
+//         mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
+//         darkMap.style.display = 'block';
 
-        mode = "light";
+//         mode = "light";
 
-    } else {
-        // Switch to light mode (hide iframe)
-        darkMap.style.display = 'none';
-        mapMode.style.display ='block' ;
-        mode = "dark";
-    }
-});
+//     } else {
+//         // Switch to light mode (hide iframe)
+//         darkMap.style.display = 'none';
+//         mapMode.style.display ='block' ;
+//         mode = "dark";
+//     }
+// });
 
 
 
