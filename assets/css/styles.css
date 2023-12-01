@@ -1,9 +1,9 @@
-
 #hero-img {
     padding: 40px;
     background-size: 600px;
     margin-left: 20px;
     margin-right: 20px;
+    z-index: 10;
 }
 
 #info-nav {
@@ -13,7 +13,7 @@
 body {
     /* Template to check linked correctly */
 
-    background-color: black;
+    /* background-color: black; */
     text-align: center;
     padding: 0px;
 }
