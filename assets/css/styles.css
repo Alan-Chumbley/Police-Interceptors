@@ -13,7 +13,7 @@
 body {
     /* Template to check linked correctly */
 
-    background-color: black;
+    
     text-align: center;
     padding: 0px;
 }
@@ -44,26 +44,27 @@ display: flex;
 
 
     
-  margin: 0;
-}
+
 #search-button{
     height: 40px;
     width: 55px;
     margin-left:10px;
-    display:inline-block;
+    display:block;
     align-items: flex-end;
     margin:15px;
-     margin-left: -5px;
-     background-color: ;
+    margin-left: -5px;
+    background-color: ;
 }
 
 #search-input{
+    display:block;
     border-radius: 15px;
     top:50%;
     margin:15px;
+
 }
 .input-group{
-    
+    display: ;
     align-items: center;
     z-index: 1; /* set higher z-index value */
     position: absolute;
@@ -75,11 +76,10 @@ display: flex;
 
 
 }
-#searchSVG {
-    margin:5px;
-}
+
 
 #map{
     height: 100%vh;
     width:100%vw;
+    display: block;
 }
