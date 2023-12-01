@@ -1,3 +1,4 @@
+
 #hero-img {
     padding: 40px;
     background-size: 600px;
@@ -7,4 +8,78 @@
 
 #info-nav {
     padding-top: 20px;
+}
+
+body {
+    /* Template to check linked correctly */
+
+    background-color: black;
+    text-align: center;
+    padding: 0px;
+}
+
+.flex-container {
+display: flex;
+}
+
+.navbar-brand { 
+    colour: black;
+    margin-left: 16px;
+}
+
+
+.fa-handcuffs {
+    margin-right: 490px;
+    margin-top: 14px;
+    font-size: 24px;
+
+}
+
+
+.navbar-brand {
+    font-weight: 500;
+    font-family: sans-serif;
+    font-size: 28px;
+}
+
+
+    
+  margin: 0;
+}
+#search-button{
+    height: 40px;
+    width: 55px;
+    margin-left:10px;
+    display:inline-block;
+    align-items: flex-end;
+    margin:15px;
+     margin-left: -5px;
+     background-color: ;
+}
+
+#search-input{
+    border-radius: 15px;
+    top:50%;
+    margin:15px;
+}
+.input-group{
+    
+    align-items: center;
+    z-index: 1; /* set higher z-index value */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(-50%, -50%);
+    width: 40%;
+
+
+}
+#searchSVG {
+    margin:5px;
+}
+
+#map{
+    height: 100%vh;
+    width:100%vw;
 }
