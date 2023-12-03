@@ -1,12 +1,5 @@
-
-body {
-    /* Template to check linked correctly */
-    
-  margin: 0;
-}
-
- #hero-banner {
-    background-image: url(/assets/images/street.png);
+#hero-banner { /* @Rachp32 I have added position fixed for the hero banner, can you double check the background image please */
+    background-image: url('./assets/images/street.png');
     background-size: cover;
     background-repeat: center;
     align-items: center;
@@ -15,32 +8,31 @@ body {
     width: 60%;
     border-radius: 8px;
     height: 600px;
- }
+    position: fixed; /* Fixed position to align background behind other elements */
+}
 
- #page-info {
+#page-info {
     font-size: 26px;
- }
+}
 
 
 
-#hero-img {
+/* #hero-img {
     padding: 40px;
     background-size: 600px;
     margin-left: 20px;
     margin-right: 20px;
     z-index: 10;
-}
+
+    @Rachp32, sorry again, wasnt 100% on this one, have left commented atm but if you could confirm for me please?
+} */
 
 #info-nav {
     padding-top: 20px;
 }
 
 body {
-    /* Template to check linked correctly */
-
-
     background-color: white;
-
     text-align: center;
     padding: 0px;
 }
@@ -54,10 +46,10 @@ h3 {
 display: flex;
 }
 
-.navbar-brand { 
+/* .navbar-brand { 
     colour: black;
     margin-left: 16px;
-}
+} */
 
 
 .fa-handcuffs {
@@ -73,7 +65,7 @@ display: flex;
     font-family: sans-serif;
     font-size: 28px;
     
-  margin: 0;
+    margin: 0;
 }
 
 .areaInfo {
@@ -87,7 +79,7 @@ display: flex;
 
 .areaOverview {
     float: left;
- margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 table {
@@ -98,7 +90,7 @@ th, td {
     padding: 8px;
 }
 
-
+/* 
 #search-button{
     height: 40px;
     width: 55px;
@@ -121,7 +113,7 @@ th, td {
     margin:15px;
     margin-left: -5px;
     background-color: ;
-}
+} */
 
 #search-input{
     display:block;
@@ -143,12 +135,12 @@ th, td {
 
 
 }
-#searchSVG {
+/* #searchSVG {
     margin:5px;
-}
+} */
 
 #map{
-    height: 100%vh;
-    width:100%vw;
+    height: 100vh;
+    width:100vw;
     display: block;
 }

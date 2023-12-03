@@ -109,7 +109,7 @@ function apiDelayedCall() {
 
 apiDelayedCall();
 
-//serach button ======
+//search button ======
 $("#search-button").on("click", function(event) { //click event listener to the search button
     event.preventDefault();
     console.log("Button Clicked!");
@@ -139,7 +139,7 @@ input.addEventListener("keypress", function(event) {
 
 
 
-//   map key - ALANS API- please don't run an infinite loop $$$
+// //   map key - ALANS API- please don't run an infinite loop $$$
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
 
 
@@ -204,67 +204,66 @@ function setupMap(center) {
     var map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-monochrome-v11",
-     center: center, //centre location on page
+    center: center, //centre location on page
     zoom: 14
-
+    
     })
+    return map;
 }
 //hide elements after click
 
 //gets rid of search button
 var onSearch = document.querySelector('.input-group');
-onSearch.addEventListener("oninput", () =>{
-if (onSearch.style.display === 'block' && onSearch.style.display === ''){
-    onSearch.style.display ='none';
-    
-}else { onSearch.style.display = 'none';
-
-  }
+    onSearch.addEventListener("oninput", () =>{
+    if (onSearch.style.display === 'block' && onSearch.style.display === ''){
+        onSearch.style.display ='none';
+    }else { 
+        onSearch.style.display = 'none';
+    }
 })
 
 
 
 // on search map change 
-// var onSearchMap = document.querySelector('map');
+var onSearchMap = document.querySelector('map');
 // onSearch.addEventListener("oninput", () =>{
-// if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
-//     onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
-    
-// }else { onSearch.style.display = 'none';
-
-//   }
+//     if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
+//         onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
+//     }else { 
+//         onSearch.style.display = 'none';
+//     }
 // })
 
 
 
 
-//make map dark mode
-// function darkMode(center) {
-//     var darkMap = new mapboxgl.Map({
-//     container: "map",
-//     style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
-//      center: center, //centre location on page
-//     zoom: 14
+// make map dark mode
+function darkMode(center) {
+    var darkMap = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
+     center: center, //centre location on page
+    zoom: 14
 
-//     })
-// }
+    })
+}
 
-// var themeswitcher =
-// themeswitcher.addEventListener("click", function() {
-//     if (mapMode === "light") {
-//         // Switch to dark mode (show iframe)
-//         mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
-//         darkMap.style.display = 'block';
+var themeswitcher = document.getElementById('themeSwitcherbtn');
+themeswitcher.addEventListener("click", function() {
+    if (mapMode === "light") {
+        // Switch to dark mode (show iframe)
+        mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
+        darkMap.style.display = 'block';
 
-//         mode = "light";
+        mode = "light";
 
-//     } else {
-//         // Switch to light mode (hide iframe)
-//         darkMap.style.display = 'none';
-//         mapMode.style.display ='block' ;
-//         mode = "dark";
-//     }
-// });
+    } else {
+        // Switch to light mode (hide iframe)
+        darkMap.style.display = 'none';
+        mapMode.style.display ='block' ;
+        mode = "dark";
+    }
+});
 
 
 
@@ -274,39 +273,40 @@ if (onSearch.style.display === 'block' && onSearch.style.display === ''){
   //access text of number of crimes - get element by ID = type of crime variable
 
 
-  function tally(data) {
+function tally(data) {
 
-  var antiSocialBehaviour = 0;
-  var burglary = 0;
-  var drugs = 0;
-  var vehicleCrime = 0;
-  var violentCrime = 0;
+    var antiSocialBehaviour = 0;
+    var burglary = 0;
+    var drugs = 0;
+    var vehicleCrime = 0;
+    var violentCrime = 0;
 
-  for (let index = 0; index < data.length; index++) {
-    const category = data[index].category;
-  if (category === "anti-social-behaviour") {
-    antiSocialBehaviour += 1;
-  }  
-  else if (category === "burglary") {
-    burglary += 1;
-  }
-  else if (category === "drugs") {
-    drugs += 1; 
-  }
-  else if (category === "vehicle-crime") {
-    vehicleCrime += 1;
-  }
-  else if (category === "violent-crime") {
-   violentCrime += 1;
-  }
-  }
-  document.getElementById("crime1").innerText = antiSocialBehaviour;
-  document.getElementById("crime2").innerText = burglary;
-  document.getElementById("crime3").innerText = drugs;
-  document.getElementById("crime4").innerText = vehicleCrime;
-  document.getElementById("crime5").innerText = violentCrime;
+    for (let index = 0; index < data.length; index++) {
+        const category = data[index].category;
+    if (category === "anti-social-behaviour") {
+        antiSocialBehaviour += 1;
+    }  
+    else if (category === "burglary") {
+        burglary += 1;
+    }
+    else if (category === "drugs") {
+        drugs += 1; 
+    }
+    else if (category === "vehicle-crime") {
+        vehicleCrime += 1;
+    }
+    else if (category === "violent-crime") {
+    violentCrime += 1;
+    }
+    }
+    document.getElementById("crime1").innerText = antiSocialBehaviour;
+    document.getElementById("crime2").innerText = burglary;
+    document.getElementById("crime3").innerText = drugs;
+    document.getElementById("crime4").innerText = vehicleCrime;
+    document.getElementById("crime5").innerText = violentCrime;
 
-  
 }
 
-//
+// function calls 
+
+callAPI("geoCode", GEO_KEY);
