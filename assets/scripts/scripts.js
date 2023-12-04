@@ -185,7 +185,7 @@ function error() {
 function setupMap(center) {
     var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/streets-monochrome-v11",
+    style: "mapbox://styles/mapbox/streets-v12",
      center: center, //centre location on page
     zoom: 14
 
@@ -193,59 +193,51 @@ function setupMap(center) {
 }
 //hide elements after click
 
-//gets rid of search button
+//gets rid of search button and link to page 2
 var onSearch = document.querySelector('.input-group');
-onSearch.addEventListener("oninput", () =>{
-if (onSearch.style.display === 'block' && onSearch.style.display === ''){
+onSearch.addEventListener("submit", (pikachu) =>{
+    
+    pikachu.preventDefault();
+if (onSearch.style.display === 'block' || onSearch.style.display === ''){
     onSearch.style.display ='none';
     
 }else { onSearch.style.display = 'none';
 
-  }
+
+}
 })
 
+var map; 
+var mode = "light"; //base variable. What is default map
+var mapStyle = "mapbox://styles/mapbox/streets-v11"; // 
+ // have to call the map setup back in order to 
+function setupMap(center) { 
+    map = new mapboxgl.Map({
+        container: "map", 
+        style: mapStyle,
+        center: center,
+        zoom: 14
+    });
+}
 
+ // Function changing map style
+function changeMapStyle(style) {
+    map.setStyle(style);
+}
 
-// on search map change 
-// var onSearchMap = document.querySelector('map');
-// onSearch.addEventListener("oninput", () =>{
-// if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
-//     onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
-    
-// }else { onSearch.style.display = 'none';
-
-//   }
-// })
-
-
-
-
-//make map dark mode
-// function darkMode(center) {
-//     var darkMap = new mapboxgl.Map({
-//     container: "map",
-//     style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
-//      center: center, //centre location on page
-//     zoom: 14
-
-//     })
-// }
-
-// var themeswitcher =
-// themeswitcher.addEventListener("click", function() {
-//     if (mapMode === "light") {
-//         // Switch to dark mode (show iframe)
-//         mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
-//         darkMap.style.display = 'block';
-
-//         mode = "light";
-
-//     } else {
-//         // Switch to light mode (hide iframe)
-//         darkMap.style.display = 'none';
-//         mapMode.style.display ='block' ;
-//         mode = "dark";
-//     }
-// });
-
+ // Event listener for the theme switcher button
+var themeSwitcherBtn = document.getElementById('themeSwitcherbtn');
+themeSwitcherBtn.addEventListener('click', function() {
+    //call back changemapstyle again if = light mode
+    if (mode === "light") {
+        mode = "dark";
+        console.log("Theme-switcher btn Clicked! "+ themeSwitcherBtn)
+        //update the definition of dark with the dark styling
+        changeMapStyle("mapbox://styles/mapbox/dark-v11");
+        //else just light mode
+    } else {
+        mode = "light";
+        changeMapStyle("mapbox://styles/mapbox/streets-v12");
+    }
+});
 

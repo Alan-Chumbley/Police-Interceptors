@@ -79,7 +79,13 @@ display: flex;
 
 
 #map{
-    height: 100%vh;
-    width:100%vw;
+    height: 50vmax;
+    width:100vmax;
     display: block;
+    float: inline-end;
+
+    
+}
+#themeSwitcherbtn {
+    float: inline-end;
 }
