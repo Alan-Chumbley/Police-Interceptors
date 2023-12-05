@@ -133,6 +133,7 @@ th, td {
     float: inline-end;
     z-index: -1;
     flex:1;
+    align-items: flex-end;
     
 
     
@@ -142,6 +143,7 @@ th, td {
 }
 .resultsContainer {
     display: flex;
+    align-items: flex-end;
 flex-direction: row;
     width: 100vw;
     height: 100vh;
