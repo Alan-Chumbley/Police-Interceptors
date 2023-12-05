@@ -320,6 +320,10 @@ function tally(data) {
 //"Top reported crimes in..." - created a span to hold this name.
 
 //function getLocation () {}
+//var locationName = getElementById("search-input").value;
+//document.getElementById("nameofPlace").innerText = locationName;
+//}
+//Review this as it looks like a variable has already been created above.
 
 // function calls 
 
