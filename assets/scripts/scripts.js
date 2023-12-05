@@ -31,14 +31,21 @@ function handleData(data, apiName) {
         // geocoder call
         case "geoCode":
             // assign global variable
-            latLon = {latitude: data.lat, longitude: data.lon};
-            console.log("latLon = " + latLon.longitude + " " + latLon.longitude);
+            if (/\d/.test(city)) {
+                // search postcode
+                latLon = {latitude: data.lat, longitude: data.lon};
+                // console.log(latLon);
+            } else {
+                // search city name -- BUG FIXED -- structure of api return was different for the postcode vs the city name
+                latLon = {latitude: data[0].lat, longitude: data[0].lon};
+                // console.log(latLon);
+            }
             return;
         // police data handling
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            console.log("Police data: ", crimeData); 
+            // console.log("Police data: ", crimeData); 
             tally(crimeData);
             return;
         default:
@@ -59,10 +66,12 @@ async function callAPI(apiName, apiKey) {
             // check if location is postcode input (check for numbers)
             if (/\d/.test(city)) {
                 // search postcode
-                path = "http://api.openweathermap.org/geo/1.0/zip?zip=" + city + ",GB&appid=" + apiKey;   
+                path = "http://api.openweathermap.org/geo/1.0/zip?zip=" + city + ",GB&appid=" + apiKey;
+                // console.log(path);
             } else {
                 // search city name -- BUG FOUND -- LOCATION ON POST CODE SEARCHED BUT NOT WITH CITY NAMES!! -- unsure why but will work on a fix
                 path = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + ",GB&appid=" + apiKey;   
+                // console.log(path);
             }
             break;
         case "policeApi":
@@ -170,7 +179,7 @@ function setupMap(lonlat) {
         zoom: 14
     }));
     // console.log(map);
-    // console.log(map[0]);
+    console.log(map[0]);
 }
 
 
