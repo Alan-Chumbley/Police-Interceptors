@@ -327,3 +327,4 @@ searchBtn.addEventListener("click", () => {
 
 
    
+callAPI("geoCode", GEO_KEY);

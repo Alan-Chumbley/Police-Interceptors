@@ -65,18 +65,12 @@
 
 
 <!-- Hero Section  -->
-    <div class="p-5 text-center bg-image rounded-3" id="hero-banner" style=" background-image: url('/Police-Interceptors/assets/images/IMG_6260.jpg');">
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div  class="text-white" id="info-nav">
-                    <h1 class="mb-3">Police Interceptors</h1>
-                    <h4 class="mb-3">Lookup Crime Statistics in Your Area!</h4>
-                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Search Your Area</a>
-                </div>
-            </div>
-        </div>
+<div class="jumbotron jumbotron-fluid" id="hero-banner">
+    <div class="container text-left text-white">
+      <h1 id="page-info">Check Out Crime Statistics in Your Area</h1>
+      <p class="instruction">Use the search function below to begin</p>
     </div>
-<!-- Hero @Rachp32 I hope I have this section correct but could you please double check for me? have changed the id following your slack message-->
+  </div>
 
     <!-- user search bar & button-->
     <div class="input-group onsubmit="hide()" id="search-group">
@@ -90,6 +84,8 @@
         </input>
     </div>
 
+
+
 <div class="resultsContainer">
   <!--Create div to hold area name and crime information-->
   <div class="areaInfo" style="display:none">
@@ -97,7 +93,6 @@
         <h3>Top reported crimes in East Putney</h3>
         <p>Crime reported during the previous Month October 2023</p>
     </div>
-    
   <table>
     <tr>
       <th>Crime</th>
