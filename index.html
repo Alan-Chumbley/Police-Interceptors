@@ -73,10 +73,10 @@
     </div>
 
 <!--Create Navbar for icon and header-->
-<nav class="navbar bg-light navbar-light">
+<nav class="navbar bg-light navbar-light container">
     <div class="flex-container">
-    <a class="navbar-brand" href="#"> Police Interceptors</a>
-    <i class="fa-solid fa-handcuffs"></i>
+    <a class="item navbar-brand" href="#"> Police Interceptors</a>
+    <i class="item fa-solid fa-handcuffs"></i>
     </div>
 </nav>
 
@@ -84,11 +84,11 @@
   <!--Create div to hold area name and crime information-->
   <div class="areaInfo">
     <div class="areaOverview">
-        <h3>Top reported crimes in East Putney</h3>
+        <h3 id="topReportedCrimes">Top reported crimes in <span id="nameOfPlace"> East Putney</span></h3>
         <p>Crime reported during the previous Month October 2023</p>
     </div>
 
-  <table>
+  <table class="crimeTable">
     <tr>
       <th>Crime</th>
       <th>Number of Incidents</th>
