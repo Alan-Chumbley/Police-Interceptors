@@ -28,9 +28,9 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/77379d9051.js" crossorigin="anonymous"></script>
 
-         <!-- Mapbox CDN-->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- Mapbox CDN -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
 
 
 </head>
@@ -40,6 +40,7 @@
         <a class="navbar-brand" href="#"> Police Interceptors</a>
         <i class="fa-solid fa-handcuffs"></i>
         </div>
+        <div class="searchBarOnClick"></div>
         <!-- Include your dark mode HTML elements here -->
 <button id="themeSwitcherbtn"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </nav>
@@ -47,50 +48,93 @@
 </header>
 <body >
 <body>
-    <div id="root"></div>
- <!-- Hero Section  -->
-    <div class="p-5 text-center bg-image rounded-3" id="hero-img" style=" background-image: url('/Police-Interceptors/assets/images/IMG_6260.jpg');">
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    <div class="d-flex justify-content-center align-items-center h-100">
-    <div  class="text-white" id="info-nav">
-    <h1 class="mb-3">Police Interceptors</h1>
-    <h4 class="mb-3">Lookup Crime Statistics in Your Area!</h4>
-    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Search Your Area</a>
-  </div>
-</div>
-</div>
-</div>
-<!-- Hero -->
+    <!-- user search bar & button-->
+    <!-- <div class="input-group"> -->
+    <!--user search bar-->
+        <!-- <input id="search-input" type="search" id="form1" class="form-control" placeholder="Enter a City, Street Name or Postcode... SW19" data-search-location=" "></input> -->
+    <!--user search button-->
+            <!-- <button id="search-button" type="button" class="btn btn-primary"> -->
+                <!-- icon -->
+                <!-- <svg id ="searchSVG" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.<path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg> -->
+                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+            <!-- </button> -->
+        <!-- </label> -->
+    <!-- </div>   -->
+    <!-- <div id="root"></div> -->
+    <!-- @gdavies2736 & @Alan-Chumbley could you both double check this comment for me please and make sure we dont need this section -->
+
+
+<!-- Hero Section  -->
+    <div class="p-5 text-center bg-image rounded-3" id="hero-banner" style=" background-image: url('/Police-Interceptors/assets/images/IMG_6260.jpg');">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div  class="text-white" id="info-nav">
+                    <h1 class="mb-3">Police Interceptors</h1>
+                    <h4 class="mb-3">Lookup Crime Statistics in Your Area!</h4>
+                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Search Your Area</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Hero @Rachp32 I hope I have this section correct but could you please double check for me? have changed the id following your slack message-->
 
     <!-- user search bar & button-->
-    <div class="input-group">
+    <div class="input-group onsubmit="hide()" id="search-group">
     <!--user search bar-->
-        <input id="search-input" type="search" class="form-control" placeholder="Enter a City, Street Name or Postcode... SW19" data-search-location=" "></input>
+        <input id="search-input" type="search" class="form-control" placeholder="Enter your Postcode to begin..." data-search-location=" ">
     <!--user search button-->
             <button id="search-button" type="button" class="btn btn-primary">
                 <!-- icon-->
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-        </label>
+        </input>
     </div>
 
-
-  <div>
-    <div>
+<div class="resultsContainer">
+  <!--Create div to hold area name and crime information-->
+  <div class="areaInfo" style="display:none">
+    <div class="areaOverview">
         <h3>Top reported crimes in East Putney</h3>
         <p>Crime reported during the previous Month October 2023</p>
-        <ul>
-            <li> Anti-Social Behaviour</li>
-            <li> </li>
-        </ul>
     </div>
-  </div>
-  <div id="root"></div>
-<!--dark-->
-<div id='map' style='width: 100vw; height: 100vh;'></div>
+    
+  <table>
+    <tr>
+      <th>Crime</th>
+      <th>Number of Incidents</th>
+    </tr>
+    <tr>
+      <td>Anti-Social Behaviour</td>
+      <td id="crime1">13</td>
+    </tr>
+    <tr>
+      <td>Burglary</td>
+      <td id="crime2">25</td>
+    </tr>
+    <tr>
+    <td>Drugs</td>
+    <td id="crime3">5</td>
+    </tr>
+    <tr>
+    <td>Vehicle crime</td>
+    <td id="crime4">10</td>
+    </tr>
+    <tr>
+      <td>Violent-crime</td>
+      <td id="crime5">20</td>
+    </tr>
+  </table>
+</div>
+
 
     
-    <!-- Custom Scripts -->
+    <!-- <div id="root"></div> -->
+<!--hero banner above, map -->
+    <!--dark-->
+<div id='map' style='width: 100vw; height: 50vh;'></div>
+
+</div> 
+    <!-- Custom Scripts --> 
     <script src="assets/scripts/scripts.js"></script>
 </body>
 
