@@ -1,15 +1,24 @@
-#hero-banner {
-    background-image: url('./assets/images/updatedstreetimage.jpg');
-    background-size: 90%;
+ #hero-banner {
+    background-image: url(/assets/images/updatedStreetImage.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     background-position: center;
-}
+    border-radius: 20px;
+ }
 
-#page-info {
-    font-size: 32px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+ #heading {
+    font-size: 36px;
+    color: white;
+ }
+
+ #page-instruction {
+    font-size: 26px;
+    color: white;
+ }
+
+#info-nav {
+    padding-top: 20px;
 }
 
 .instruction {
@@ -105,8 +114,9 @@ th, td {
     margin:15px;
 
 }
+/*  */
 .input-group{
-    display: ;
+    /* display: ; */
     align-items: center;
     z-index: 1; /* set higher z-index value */
     position: absolute;
