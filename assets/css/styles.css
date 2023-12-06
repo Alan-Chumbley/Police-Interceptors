@@ -6,29 +6,23 @@ body {
 }
 
  #hero-banner {
-    background-image: url(/assets/images/street.png);
+    background-image: url(/assets/images/updatedStreetImage.jpg);
     background-size: cover;
-    background-repeat: center;
-    align-items: center;
     background-repeat: no-repeat;
-    margin: 5% auto 5% auto;
-    width: 60%;
-    border-radius: 8px;
-    height: 600px;
+    display: flex;
+    background-position: center;
+    border-radius: 20px;
  }
 
- #page-info {
+ #heading {
+    font-size: 36px;
+    color: white;
+ }
+
+ #page-instruction {
     font-size: 26px;
+    color: white;
  }
-
-
-
-#hero-img {
-    padding: 40px;
-    background-size: 600px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
 
 #info-nav {
     padding-top: 20px;
