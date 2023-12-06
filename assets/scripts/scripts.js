@@ -261,7 +261,7 @@ themeSwitcherBtn.addEventListener('click', function() {
     //call back changemapstyle again if = light mode
     if (mode === "light") {
         mode = "dark";
-        console.log("Theme-switcher btn Clicked! "+ themeSwitcherBtn)
+        console.log("themeSwitcherbtn Clicked! "+ themeSwitcherBtn)
         //update the definition of dark with the dark styling
         changeMapStyle("mapbox://styles/mapbox/dark-v11");
         //else just light mode

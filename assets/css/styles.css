@@ -91,12 +91,11 @@ th, td {
 
 #search-input{
     border-radius: 15px;
-    top:50%;
     margin:15px;
 
 }
 .input-group{
-    display: ;
+
     align-items: center;
     z-index: 3; /* set higher z-index value */
     position: absolute;
@@ -113,18 +112,18 @@ th, td {
 } */
 
 #map{
-    
-    display: block;
     float: inline-end;
-    z-index: -1;
+    z-index: -3;
     flex:1;
     align-items: flex-end;
-    
 
-    
 }
 #themeSwitcherbtn {
     float: inline-end;
+    border: none;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
 }
 .resultsContainer {
     display: flex;
@@ -133,6 +132,7 @@ flex-direction: row;
     width: 100vw;
     height: 100vh;
     overflow: hidden; /* Prevent scrollbars */
+    z-index: 1;
 }
 .areaInfo {
     border: 3px solid black;
@@ -143,6 +143,11 @@ flex-direction: row;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+   
 
 }
 
+.searchContainer{
+    display:flex;
+    align-items: flex-start;
+}
