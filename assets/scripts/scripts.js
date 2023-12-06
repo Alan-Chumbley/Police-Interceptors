@@ -208,7 +208,8 @@ $("#search-input").on('keypress', function(event) {
     
 });
 
-  //map settings centered to be more intuitive
+  //map settings centered to be more intuitive @Alan-Chumbley can you change the name of the functions, otherwise we are REASSIGNING the already declared function
+
 function setupMap(center) {
     var map = new mapboxgl.Map({
     container: "map",
@@ -240,7 +241,7 @@ document.getElementById('search-group').addEventListener('submit', hide);
 var mapBox; 
 var mode = "light"; //base variable. What is default map
 var mapStyle = "mapbox://styles/mapbox/streets-v11"; // 
- // have to call the map setup back in order to 
+ // have to call the map setup back in order to @Alan-Chumbley this is the one that should work, we can comment the others out for now
 function setupMap(center) { 
     mapBox = new mapboxgl.Map({
         container: "map", 
