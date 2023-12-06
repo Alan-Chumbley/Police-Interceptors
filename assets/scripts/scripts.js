@@ -1,25 +1,15 @@
-// GLOBALS -----------------------------------------------------------
+// GLOBALS ---------------------------------------------------------------------------------------------------
 
 // API KEY VARIABLES
 const GEO_KEY = "8e65421b6e97a45d703a871ea4e78c3a";
 // Search bar location - set to london to start, docs state we can also use post codes in the search
 let city = "nn1";
 let latLon;
-  
-// Blocker: -- API call cost etc, do we want to use the api or use the iframe:
-/**
-<iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-    &q=Space+Needle,Seattle+WA">
-</iframe>
- */
-const GOOGLE_KEY = "";
+
+
+// NO LONGER GOOGLE, USING MAPBOX - Alans key, be careful
+const MAPBOX_KEY = "pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw";
+let map = [];
 
 // Police API no longer needs key
 const POLICE_KEY = "";
@@ -30,7 +20,7 @@ const POLICE_KEY = "";
 let monthSearched = "2021-01";
 let crimeData;
 
-// API CALLS AND DATA HANDLING
+// API CALLS AND DATA HANDLING ------------------------------------------------------------------------------
 
 // handle returned data from calls
 function handleData(data, apiName) {
@@ -41,17 +31,21 @@ function handleData(data, apiName) {
         // geocoder call
         case "geoCode":
             // assign global variable
-            latLon = {latitude: data.lat, longitude: data.lon};
-            // console.log("latLon = " + latLon.longitude + " " + latLon.longitude);
+            if (/\d/.test(city)) {
+                // search postcode
+                latLon = {latitude: data.lat, longitude: data.lon};
+                // console.log(latLon);
+            } else {
+                // search city name -- BUG FIXED -- structure of api return was different for the postcode vs the city name
+                latLon = {latitude: data[0].lat, longitude: data[0].lon};
+                // console.log(latLon);
+            }
             return;
-        // google maps handling - current blocker
-        case "googleMap":
-            return "google data";
         // police data handling
         case "policeApi":
             // update global with data as current returned array
             crimeData = data;
-            console.log("Police data: ", crimeData); 
+            // console.log("Police data: ", crimeData); 
             tally(crimeData);
             return;
         default:
@@ -72,16 +66,13 @@ async function callAPI(apiName, apiKey) {
             // check if location is postcode input (check for numbers)
             if (/\d/.test(city)) {
                 // search postcode
-                path = "http://api.openweathermap.org/geo/1.0/zip?zip=" + city + ",GB&appid=" + apiKey;   
+                path = "http://api.openweathermap.org/geo/1.0/zip?zip=" + city + ",GB&appid=" + apiKey;
+                // console.log(path);
             } else {
                 // search city name -- BUG FOUND -- LOCATION ON POST CODE SEARCHED BUT NOT WITH CITY NAMES!! -- unsure why but will work on a fix
                 path = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + ",GB&appid=" + apiKey;   
+                // console.log(path);
             }
-                break;
-        // Google map pathing
-        case "googleMap":
-            path = "";
-            console.log(path);
             break;
         case "policeApi":
             // This link functions correctly and we have the data as a huge (835 total for just NN1) array of objects, need to figure out how to filter through it all
@@ -117,18 +108,17 @@ async function callAPI(apiName, apiKey) {
         .catch(error => console.log(apiName + " " + error));
 }
 
-// call api for geocoded location, assign lat / lon object on return value
-callAPI("geoCode", GEO_KEY);
-
+// Delayed call for data to ensure lat lon
 function apiDelayedCall() {
     setTimeout(() => {
         callAPI("policeApi", POLICE_KEY);
+        setupMap([latLon.longitude, latLon.latitude]);
     }, 3000);
 }
 
 apiDelayedCall();
 
-//serach button ======
+//search button ======
 $("#search-button").on("click", function(event) { //click event listener to the search button
     event.preventDefault();
     console.log("Button Clicked!");
@@ -158,95 +148,131 @@ input.addEventListener("keypress", function(event) {
 
 
 
-//   map key - ALANS API- please don't run an infinite loop $$$
+// //   map key - ALANS API- please don't run an infinite loop $$$
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0ZGplYmYifQ.1MecnWfHuhj0e8vo1cYCkw';
 
 
    //current location
 navigator.geolocation.getCurrentPosition(success, error, {
     enableHighAccuracy: true
-})
-
+});
+// handle sucess call of geolocation
 function success(position) {
-    console.log("Current Location: " && position); //resurns users location
-    setupMap([position.coords.longitude, position.coords.latitude])
-    
-    var autoUserLocation = position;
-    localStorage.setItem("autoLocation", JSON.stringify(autoUserLocation));
-    var autoUserLocationData = JSON.parse(localStorage.getItem('autoLocation'));
-    console.log("Local Storage Location: "&& autoUserLocationData);
+    // function call for mapbox, current location
+    setupMap([position.coords.longitude, position.coords.latitude])//
 }
-  //if user disables access to location, provide a default
+// if user disables access to location, provide a default
 function error() {
-    setupMap([-0.083094, 51.511177])
+    // default location
+    setupMap([-0.083094, 51.511177]);
 }
+
+
+// function to create map on latlon 
+function setupMap(lonlat) {
+    // push new map to array (handle local storage for this)
+    map.push(new mapboxgl.Map({
+        // mapbox settings
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: lonlat, //centre location on page
+        zoom: 14
+    }));
+    // console.log(map);
+    console.log(map[0]);
+}
+
+
+// SEARCH BUTTON FUNCTIONS ----------------------------------------------------------------------------------
+
+// handle search button click
+$("#search-button").on("click", function(event){
+    // console.log("Button Clicked!");
+    // link up location to search with global
+    city = $('#search-input').val();
+    // call geocode
+    callAPI("geoCode", GEO_KEY);
+    // call delayed police data to ensure latLon update
+    apiDelayedCall();
+});
+
+// handle search with return key same as search button
+$("#search-input").on('keypress', function(event) {
+    if (event.key == 'Enter') {
+        // prevent form refresh default
+        event.preventDefault();
+        city = event.target.value;
+        callAPI("geoCode", GEO_KEY);
+        apiDelayedCall();
+    }
+
+});
 
   //map settings centered to be more intuitive
 function setupMap(center) {
     var map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/streets-monochrome-v11",
-     center: center, //centre location on page
+    style: "mapbox://styles/mapbox/streets-v12",
+    center: center, //centre location on page
     zoom: 14
 
     })
+    return map;
 }
 //hide elements after click
 
 //gets rid of search button
 var onSearch = document.querySelector('.input-group');
-onSearch.addEventListener("oninput", () =>{
-if (onSearch.style.display === 'block' && onSearch.style.display === ''){
-    onSearch.style.display ='none';
-    
-}else { onSearch.style.display = 'none';
-
-  }
+    onSearch.addEventListener("oninput", () =>{
+    if (onSearch.style.display === 'block' && onSearch.style.display === ''){
+        onSearch.style.display ='none';
+    }else { 
+        onSearch.style.display = 'none';
+    }
 })
 
 
 
 // on search map change 
-// var onSearchMap = document.querySelector('map');
+var onSearchMap = document.querySelector('map');
 // onSearch.addEventListener("oninput", () =>{
-// if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
-//     onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
-    
-// }else { onSearch.style.display = 'none';
-
-//   }
+//     if (onSearch.style.width === '100%vh' && onSearch.style.width === '100%vw'){
+//         onSearch.style.height ='50%vh' && onSearch.style.width = '50%vw';
+//     }else { 
+//         onSearch.style.display = 'none';
+//     }
 // })
 
 
 
 
-//make map dark mode
-// function darkMode(center) {
-//     var darkMap = new mapboxgl.Map({
-//     container: "map",
-//     style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
-//      center: center, //centre location on page
-//     zoom: 14
+// make map dark mode
+function darkMode(center) {
+    var darkMap = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/chumba/clplcytui00w201po42tje31h",
+     center: center, //centre location on page
+    zoom: 14
 
-//     })
-// }
+    })
+}
 
-// var themeswitcher =
-// themeswitcher.addEventListener("click", function() {
-//     if (mapMode === "light") {
-//         // Switch to dark mode (show iframe)
-//         mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
-//         darkMap.style.display = 'block';
+var themeswitcher = document.getElementById('themeSwitcherbtn');
+themeswitcher.addEventListener("click", function() {
+    if (mapMode === "light") {
+        // Switch to dark mode (show iframe)
+        mapMode.style ="mapbox://styles/chumba/clplcytui00w201po42tje31h"
+        darkMap.style.display = 'block';
 
-//         mode = "light";
+        mode = "light";
 
-//     } else {
-//         // Switch to light mode (hide iframe)
-//         darkMap.style.display = 'none';
-//         mapMode.style.display ='block' ;
-//         mode = "dark";
-//     }
-// });
+    } else {
+        // Switch to light mode (hide iframe)
+        darkMap.style.display = 'none';
+        mapMode.style.display ='block' ;
+        mode = "dark";
+    }
+});
 
 
 
@@ -256,37 +282,40 @@ if (onSearch.style.display === 'block' && onSearch.style.display === ''){
   //access text of number of crimes - get element by ID = type of crime variable
 
 
-  function tally(data) {
+function tally(data) {
 
-  var antiSocialBehaviour = 0;
-  var burglary = 0;
-  var drugs = 0;
-  var vehicleCrime = 0;
-  var violentCrime = 0;
+    var antiSocialBehaviour = 0;
+    var burglary = 0;
+    var drugs = 0;
+    var vehicleCrime = 0;
+    var violentCrime = 0;
 
-  for (let index = 0; index < data.length; index++) {
-    const category = data[index].category;
-  if (category === "anti-social-behaviour") {
-    antiSocialBehaviour += 1;
-  }  
-  else if (category === "burglary") {
-    burglary += 1;
-  }
-  else if (category === "drugs") {
-    drugs += 1; 
-  }
-  else if (category === "vehicle-crime") {
-    vehicleCrime += 1;
-  }
-  else if (category === "violent-crime") {
-   violentCrime += 1;
-  }
-  }
-  document.getElementById("crime1").innerText = antiSocialBehaviour;
-  document.getElementById("crime2").innerText = burglary;
-  document.getElementById("crime3").innerText = drugs;
-  document.getElementById("crime4").innerText = vehicleCrime;
-  document.getElementById("crime5").innerText = violentCrime;
+    for (let index = 0; index < data.length; index++) {
+        const category = data[index].category;
+    if (category === "anti-social-behaviour") {
+        antiSocialBehaviour += 1;
+    }  
+    else if (category === "burglary") {
+        burglary += 1;
+    }
+    else if (category === "drugs") {
+        drugs += 1; 
+    }
+    else if (category === "vehicle-crime") {
+        vehicleCrime += 1;
+    }
+    else if (category === "violent-crime") {
+    violentCrime += 1;
+    }
+    }
+    document.getElementById("crime1").innerText = antiSocialBehaviour;
+    document.getElementById("crime2").innerText = burglary;
+    document.getElementById("crime3").innerText = drugs;
+    document.getElementById("crime4").innerText = vehicleCrime;
+    document.getElementById("crime5").innerText = violentCrime;
 
-  
 }
+
+// function calls 
+
+callAPI("geoCode", GEO_KEY);
