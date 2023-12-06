@@ -312,6 +312,15 @@ function tally(data) {
 
 }
 
+//Replace name of location by getting the searched name and display it inside of:
+//"Top reported crimes in..." - created a span to hold this name.
+
+//function getLocation () {}
+//var locationName = getElementById("search-input").value;
+//document.getElementById("nameofPlace").innerText = locationName;
+//}
+//Review this as it looks like a variable has already been created above.
+
 // function calls 
 
 callAPI("geoCode", GEO_KEY);

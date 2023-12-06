@@ -34,7 +34,9 @@
 
 
 </head>
-<header>
+
+<body>
+  <header>
     <nav class="navbar bg-light navbar-light">
         <div class="flex-container">
         <a class="navbar-brand" href="#"> Police Interceptors</a>
@@ -46,9 +48,6 @@
     </nav>
      
 </header>
-<body >
-<body>
-
 
 <!-- Hero Section  -->
 <div class="jumbotron jumbotron-fluid" id="hero-banner">
@@ -78,10 +77,11 @@
   <!--Create div to hold area name and crime information-->
   <div class="areaInfo" style="display:none">
     <div class="areaOverview">
-        <h3>Top reported crimes in East Putney</h3>
+        <h3 id="topReportedCrimes">Top reported crimes in <span id="nameOfPlace"> East Putney</span></h3>
         <p>Crime reported during the previous Month October 2023</p>
     </div>
-  <table>
+
+  <table class="crimeTable">
     <tr>
       <th>Crime</th>
       <th>Number of Incidents</th>
