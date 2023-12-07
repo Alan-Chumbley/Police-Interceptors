@@ -26,8 +26,12 @@ h3 {
     margin-bottom: 16px;
 }
 
-.flex-container {
+.container {
 display: flex;
+flex-direction: row;
+justify-content: flex-start;
+height: 80px;
+margin-left: 32px;
 }
 
 /* .navbar-brand { 
@@ -37,9 +41,7 @@ display: flex;
 
 
 .fa-handcuffs {
-    margin-right: 490px;
-    margin-top: 14px;
-    font-size: 24px;
+    font-size:24px;
 
 }
 
@@ -55,19 +57,20 @@ display: flex;
 .areaInfo {
     border: 3px solid black;
     padding: 32px;
-    width: 500px;
+    width: 40%;
     margin-top: 400px;
     margin-left: 32px;  
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
 }
 
 .areaOverview {
-    float: left;
     margin-bottom: 16px;
 }
 
 table {
-    width: 400px;
+    
 }
 
 th, td {

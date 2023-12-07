@@ -202,6 +202,7 @@ $("#search-input").on('keypress', function(event) {
         // prevent form refresh default
         event.preventDefault();
         city = event.target.value;
+        document.getElementById("nameofPlace").innerText = city;
         callAPI("geoCode", GEO_KEY);
         apiDelayedCall();
     }
