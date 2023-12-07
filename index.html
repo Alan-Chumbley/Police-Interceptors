@@ -35,22 +35,37 @@
 
 </head>
 
-<body>
+
+<body id="dark">
   <header>
     <nav class="navbar bg-light navbar-light">
         <div class="flex-container">
         <a class="navbar-brand" href="#"> Police Interceptors</a>
         <i class="fa-solid fa-handcuffs"></i>
         </div>
-        <div class="searchBarOnClick"></div>
+        <div class="searchBarOnClick"">
+            <!-- user search bar & button-->
+    <div class="top-input-group" id="search-group" style="display: none";>
+        <!--user search bar-->
+            <input id="top-search-input" type="search" class="form-control" placeholder="Enter your Postcode to begin..." data-search-location=" "></input>
+        <!--user search button-->
+                <button id="top-search-button" type="button" class="btn btn-primary">
+                    <!-- icon-->
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            
+        </div>
+        </div>
+        
         <!-- Include your dark mode HTML elements here -->
 <button id="themeSwitcherbtn" class="light"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </nav>
      
 </header>
 
+
 <!-- Hero Section  -->
-<div class="jumbotron jumbotron-fluid" id="hero-banner">
+    <div class="jumbotron jumbotron-fluid" id="hero-banner" style="background-image: url('./assets/images/updatedStreetImage.jpg');">
     <div class="container text-left text-white">
       <h1 id="page-info">Check Out Crime Statistics in Your Area</h1>
       <p class="instruction">Use the search function below to begin</p>
@@ -59,7 +74,7 @@
 
 
     <!-- user search bar & button-->
-    <div class="input-group onsubmit="hide()" id="search-group">
+    <div class="input-group" id="search-group">
     <!--user search bar-->
         <input id="search-input" type="search" class="form-control" placeholder="Enter your Postcode to begin..." data-search-location=" "></input>
     <!--user search button-->
