@@ -36,33 +36,19 @@
 </head>
 
 
-<body id="dark">
   <header>
-    <nav class="navbar bg-light navbar-light">
+    <nav class="navbar bg-light navbar-light container">
         <div class="flex-container">
-        <a class="navbar-brand" href="#"> Police Interceptors</a>
-        <i class="fa-solid fa-handcuffs"></i>
+        <a class="item navbar-brand" href="#"> Police Interceptors</a>
+        <i class="item fa-solid fa-handcuffs"></i>
         </div>
-        <div class="searchBarOnClick"">
-            <!-- user search bar & button-->
-    <div class="top-input-group" id="search-group" style="display: none";>
-        <!--user search bar-->
-            <input id="top-search-input" type="search" class="form-control" placeholder="Enter your Postcode to begin..." data-search-location=" "></input>
-        <!--user search button-->
-                <button id="top-search-button" type="button" class="btn btn-primary">
-                    <!-- icon-->
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            
-        </div>
-        </div>
-        
-        <!-- Include your dark mode HTML elements here -->
-<button id="themeSwitcherbtn" class="light"><i class="fa-solid fa-circle-half-stroke"></i></button>
-    </nav>
-     
-</header>
 
+              <!-- Include your dark mode HTML elements here -->
+<button id="themeSwitcherbtn"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  
+    </nav>
+    
+</header>
 
 <!-- Hero Section  -->
     <div class="jumbotron jumbotron-fluid" id="hero-banner" style="background-image: url('./assets/images/updatedStreetImage.jpg');">
@@ -72,7 +58,7 @@
     </div>
   </div>
 
-
+  
     <!-- user search bar & button-->
     <div class="input-group" id="search-group">
     <!--user search bar-->
@@ -87,13 +73,16 @@
     </div>
 
 
+<!--<div class="resultsContainer">
+  <!-Create div to hold area name and crime information-->
 
 <div class="resultsContainer">
   <!--Create div to hold area name and crime information-->
+
   <div class="areaInfo" style="display:none">
     <div class="areaOverview">
         <h3 id="topReportedCrimes">Top reported crimes in <span id="nameOfPlace"> East Putney</span></h3>
-        <p>Crime reported during the previous Month October 2023</p>
+        <p>Crime reported for the previous Month</p>
     </div>
 
   <table class="crimeTable">

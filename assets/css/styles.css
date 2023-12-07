@@ -19,6 +19,10 @@
     font-size: 24px;
     text-shadow: 2px 2px 2px black
 }
+header {
+    display: flex;
+    justify-content: space-between;
+}
 body {
     background-color: white;
     text-align: center;
@@ -30,8 +34,12 @@ h3 {
     margin-bottom: 16px;
 }
 
-.flex-container {
+.container {
 display: flex;
+flex-direction: row;
+justify-content: flex-start;
+height: 80px;
+margin-left: 32px;
 }
 
 /* .navbar-brand { 
@@ -41,9 +49,7 @@ display: flex;
 
 
 .fa-handcuffs {
-    margin-right: 490px;
-    margin-top: 14px;
-    font-size: 24px;
+    font-size:24px;
 
 }
 
@@ -55,14 +61,24 @@ display: flex;
     margin: 0;
 }
 
+.areaInfo {
+    border: 3px solid black;
+    padding: 32px;
+    width: 40%;
+    margin-top: 400px;
+    margin-left: 32px;  
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
 
 .areaOverview {
-    float: left;
     margin-bottom: 16px;
+    float: left;
 }
 
 table {
-    width: 400px;
+    width: 400px; 
 }
 
 th, td {
@@ -123,14 +139,17 @@ th, td {
 
 }
 #themeSwitcherbtn {
-    float: inline-end;
+    display:flex;
+    justify-content: flex-end;
     border: none;
     border-radius: 100px;
     height: 30px;
     width: 30px;
+    background-color: transparent;
 }
 .resultsContainer {
     display: flex;
+    justify-content: ;
     align-items: flex-end;
 flex-direction: row;
     width: 100vw;
@@ -151,7 +170,3 @@ flex-direction: row;
 
 }
 
-.searchContainer{
-    display:flex;
-    align-items: flex-start;
-}
