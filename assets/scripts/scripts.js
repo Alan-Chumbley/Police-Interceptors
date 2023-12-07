@@ -124,6 +124,12 @@ $("#search-button").on("click", function(event) { //click event listener to the 
     console.log("Button Clicked!");
     var location = $('#search-input').val();
     console.log("USER INPUT Location: " + location);
+    //set local storage for search
+console.log(location);
+localStorage.setItem('userPOI',JSON.stringify(location));
+
+var storedPOIData = JSON.parse(localStorage.getItem('userPOI'));
+console.log("local Stored Location: "+ storedPOIData);
 
     //checks to see if #searc- button element clicked and says sets it to true
     $(this).data('clicked', true); 
@@ -153,9 +159,14 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2h1bWJhIiwiYSI6ImNscGw5a2k1NjAxemwybG83ZmE0Z
 
 
    //current location
-navigator.geolocation.getCurrentPosition(success, error, {
-    enableHighAccuracy: true
-});
+function autoLocate(){
+    navigator.geolocation.getCurrentPosition(success, error, {
+            enableHighAccuracy: true
+        });
+
+}
+//
+autoLocate();
 // handle sucess call of geolocation
 function success(position) {
     // function call for mapbox, current location
@@ -169,18 +180,18 @@ function error() {
 
 
 // function to create map on latlon 
-function setupMap(lonlat) {
-    // push new map to array (handle local storage for this)
-    map.push(new mapboxgl.Map({
-        // mapbox settings
-        container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: lonlat, //centre location on page
-        zoom: 14
-    }));
-    // console.log(map);
-    console.log(map[0]);
-}
+// function setupMap(lonlat) {
+//     // push new map to array (handle local storage for this)
+//     map.push(new mapboxgl.Map({
+//         // mapbox settings
+//         container: "map",
+//         style: "mapbox://styles/mapbox/streets-v11",
+//         center: lonlat, //centre location on page
+//         zoom: 14
+//     }));
+//     // console.log(map);
+//     console.log(map[0]);
+// }
 
 
 // SEARCH BUTTON FUNCTIONS ----------------------------------------------------------------------------------
@@ -210,38 +221,48 @@ $("#search-input").on('keypress', function(event) {
 
   //map settings centered to be more intuitive @Alan-Chumbley can you change the name of the functions, otherwise we are REASSIGNING the already declared function
 
-function setupMap(center) {
-    var map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/mapbox/streets-v12",
-     center: center, //centre location on page
-    zoom: 14
+// function setupMap(center) {
+//     var map = new mapboxgl.Map({
+//     container: "map",
+//     style: "mapbox://styles/mapbox/streets-v12",
+//      center: center, //centre location on page
+//     zoom: 14
     
-    })
-    return map;
-}
+//     })
+//     return map;
+// }
 //hide elements after click
 
 //gets rid of search button
 //BLOCKER: bot submit and click events perform bugs
-function hide() {
-    
-    var setupMap = document.getElementById('search-input').value;
+// function hide() {
+//     var setupMap = document.getElementById('search-input').value;
 
-    if (setupMap!== '') {
-        // Hide the input if user has submitted location
-        document.getElementById('search-group').style.display = 'none';
-    }
-}
+//     if (setupMap!== '') {
+//         // Hide the input if user has submitted location
+//         document.getElementById('search-group').style.display = 'none';
+//     }
+// }
 
-// Add an event listener to the search button to trigger the 'hide()' function on click
-document.getElementById('search-group').addEventListener('submit', hide);
+// // Add an event listener to the search button to trigger the 'hide()' function on click
+// document.getElementById('search-group').addEventListener('oninput', hide);
+
+// // make top search bar appear 
+// var topSearch =document.getElementById('top-input-group');
+// function showTopSearch(){
+
+// topSearch.style.display ='block';
+// }
+// document.getElementById('search-button').onclick = showTopSearch;
+// document.getElementById('search-input').oninput = showTopSearch;
+//BLOCkER ABOVE^^ unable to make 
+
 
 //darkmode
 var mapBox; 
 var mode = "light"; //base variable. What is default map
 var mapStyle = "mapbox://styles/mapbox/streets-v11"; // 
- // have to call the map setup back in order to @Alan-Chumbley this is the one that should work, we can comment the others out for now
+ // have to call the map setup back in order to @Alan-Chumbley this is the one that should work, we can comment the others out for now//READ
 function setupMap(center) { 
     mapBox = new mapboxgl.Map({
         container: "map", 
@@ -250,6 +271,7 @@ function setupMap(center) {
         zoom: 14
     });
 }
+
 
  // Function changing map style
 function changeMapStyle(style) {
@@ -271,6 +293,8 @@ themeSwitcherBtn.addEventListener('click', function() {
         changeMapStyle("mapbox://styles/mapbox/streets-v12");
     }
 });
+
+//var webMode = document.getElementById('dark').style.backgroundColor ="212529"
 
 
   //Tally up number of crimes by creating variable for each
