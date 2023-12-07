@@ -297,6 +297,7 @@ themeSwitcherBtn.addEventListener('click', function() {
 
 //var webMode = document.getElementById('dark').style.backgroundColor ="212529"
 
+
   //Tally up number of crimes by creating variable for each
   //For loop to tally up total adding one each other
   //if/else statement to work out if the data matches the data presented in the table

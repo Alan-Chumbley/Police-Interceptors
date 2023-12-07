@@ -2,15 +2,9 @@
 
 ## Description 
 
-This group project has been created with the goal of finding crime rates and types for a searched location. We aim to enable the user to search for a location and allow them to see current crime rates and whether that trend has increased or decreased within the past year. We aim to use data from the UK Police Data API and the OpenWeather Geocoding API to help with 
+This group project has been created with the goal of finding crime rates and types for a searched location. We aim to enable the user to search for a location and allow them to see current crime rates. We used data from the UK Police Data API and the OpenWeather Geocoding API to help with discerning the latitude and longitude, as well as the Mapbox API.
 
-## Roadmap
-
-- Planning
-- Assigning roles
-- Assigning Issues / Tickets
-- Template files
-- Branch / version development.
+![Screenshot of the deployed website](./assets/images/Capture.PNG)
 
 ## Front End 
 
@@ -19,7 +13,7 @@ This group project has been created with the goal of finding crime rates and typ
 - JavaScript
 - BootstrapCSS
 - jQuery
-- dayJS
+
 
 ## Contribtutions
 
@@ -30,7 +24,7 @@ This group project has been created with the goal of finding crime rates and typ
 
 ## Usage
 
-N/A - WIP
+Deployed Site: https://alan-chumbley.github.io/Police-Interceptors/
 
 ## Support
 
