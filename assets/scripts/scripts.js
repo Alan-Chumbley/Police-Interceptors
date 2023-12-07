@@ -20,6 +20,7 @@ const POLICE_KEY = "";
 let monthSearched = "2021-01";
 let crimeData;
 
+
 // API CALLS AND DATA HANDLING ------------------------------------------------------------------------------
 
 // handle returned data from calls
