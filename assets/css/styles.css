@@ -1,19 +1,25 @@
 #hero-banner {
-    background-size: 90%;
+/* @Rachp32 can you check and add a background color to the text or text shadow to make it pop a bit more and if needed increase text size  */
+
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
+    opacity: 0.9;
+    border-radius: 15px;
 }
 
-/* @Rachp32 can you check and add a background color to the text or text shadow to make it pop a bit more and if needed increase text size  */
 #page-info {
     font-size: 32px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
+    padding-top: 5%;
+    text-shadow: 2px 2px 2px black;
 }
 
-.instruction {
-    font-size: 20px;
+#instruction {
+    font-size: 24px;
+    text-shadow: 2px 2px 2px black
 }
 body {
     background-color: white;

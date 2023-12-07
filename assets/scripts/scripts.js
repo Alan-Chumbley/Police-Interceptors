@@ -273,7 +273,6 @@ function setupMap(center) {
     });
 }
 
-
  // Function changing map style
 function changeMapStyle(style) {
     mapBox.setStyle(style);
@@ -296,7 +295,6 @@ themeSwitcherBtn.addEventListener('click', function() {
 });
 
 //var webMode = document.getElementById('dark').style.backgroundColor ="212529"
-
 
   //Tally up number of crimes by creating variable for each
   //For loop to tally up total adding one each other
