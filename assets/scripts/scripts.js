@@ -20,6 +20,7 @@ const POLICE_KEY = "";
 let monthSearched = "2021-01";
 let crimeData;
 
+
 // API CALLS AND DATA HANDLING ------------------------------------------------------------------------------
 
 // handle returned data from calls
@@ -213,6 +214,7 @@ $("#search-input").on('keypress', function(event) {
         // prevent form refresh default
         event.preventDefault();
         city = event.target.value;
+        document.getElementById("nameofPlace").innerText = city;
         callAPI("geoCode", GEO_KEY);
         apiDelayedCall();
     }
@@ -271,7 +273,6 @@ function setupMap(center) {
         zoom: 14
     });
 }
-
 
  // Function changing map style
 function changeMapStyle(style) {
