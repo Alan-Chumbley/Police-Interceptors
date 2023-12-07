@@ -14,6 +14,7 @@ This group project has been created with the goal of finding crime rates and typ
 - BootstrapCSS
 - jQuery
 
+
 ## Contribtutions
 
 - Alan Chumbley - Front End Developer / Repository Owner (https://github.com/Alan-Chumbley)
