@@ -1,6 +1,4 @@
 #hero-banner {
-/* @Rachp32 can you check and add a background color to the text or text shadow to make it pop a bit more and if needed increase text size  */
-
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -19,7 +17,13 @@
 
 #instruction {
     font-size: 24px;
-    text-shadow: 2px 2px 2px black
+    text-shadow: 2px 2px 2px black;
+    display: flex;
+  
+}
+header {
+    display: flex;
+    justify-content: space-between;
 }
 body {
     background-color: white;
@@ -63,7 +67,7 @@ margin-left: 32px;
     border: 3px solid black;
     padding: 32px;
     width: 40%;
-    margin-top: 400px;
+    justify-content:space-evenly
     margin-left: 32px;  
     border-radius: 4px;
     display: flex;
@@ -72,10 +76,11 @@ margin-left: 32px;
 
 .areaOverview {
     margin-bottom: 16px;
+    float: left;
 }
 
 table {
-    
+    width: 400px; 
 }
 
 th, td {
@@ -113,7 +118,9 @@ th, td {
 }
 .input-group{
     /* display: ; */
+    display: center;
     align-items: center;
+    justify-content: center;
     z-index: 3; /* set higher z-index value */
     position: absolute;
     top: 50%;
@@ -136,18 +143,18 @@ th, td {
 
 }
 #themeSwitcherbtn {
-    float: inline-end;
+    display:flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 20px;
     border: none;
     border-radius: 100px;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
 }
 .resultsContainer {
     display: flex;
-    align-items: flex-end;
-flex-direction: row;
-    width: 100vw;
-    height: 100vh;
     overflow: hidden; /* Prevent scrollbars */
     z-index: 1;
 }
@@ -155,16 +162,11 @@ flex-direction: row;
     border: 3px solid black;
     padding: 32px;
     width: 500px;
-    margin-top: 400px;
+    
     margin-left: 32px;  
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-   
 
 }
 
-.searchContainer{
-    display:flex;
-    align-items: flex-start;
-}
