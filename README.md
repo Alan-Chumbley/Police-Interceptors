@@ -4,7 +4,7 @@
 
 This group project has been created with the goal of finding crime rates and types for a searched location. We aim to enable the user to search for a location and allow them to see current crime rates. We used data from the UK Police Data API and the OpenWeather Geocoding API to help with discerning the latitude and longitude, as well as the Mapbox API.
 
-![Screenshot of the deployed website](./assets/images/FINAl-view.PNG)
+![Screenshot of the deployed website](./assets/images/FINAL-view.PNG)
 
 ## Front End 
 
